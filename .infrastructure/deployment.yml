@@ -53,12 +53,14 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
           volumeMounts:
-            - mountPath: /app/data
-              name: data
-            - mountPath: /app/secrets
-              name: app-secrets-volume
-            - mountPath: /app/config
-              name: app-config-volume
+            - name: data
+              mountPath: /app/data
+            - name: app-secrets-volume
+              mountPath: /app/secrets
+              readOnly: true
+            - name: app-config-volume
+              mountPath: /app/configs
+              readOnly: true
       volumes:
         - name: data
           persistentVolumeClaim:
